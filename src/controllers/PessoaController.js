@@ -1,4 +1,5 @@
 const PessoaService = require('../services/PessoaService');
+const Pessoa =require ('../classes/Pessoa');
 
 formatar = (data)=>{
     let dataFormatada = new Date(Date.parse(data));
@@ -22,6 +23,7 @@ module.exports ={
                 dataNascimento: formatar (pessoas[i].dataNascimento)
             });
         }
+        
         res.json(json);
     },
     buscarUm: async(req, res) =>{
@@ -30,9 +32,10 @@ module.exports ={
 
         let pessoa = await PessoaService.buscarUm(cpf);
         if(pessoa){
-        json.result=pessoa;
-        }  
-        res.json(json);
+            json.result=pessoa;
+        }
+        
+        return res.json(json.result);
     },
 
     inserirPessoa: async(req, res) =>{
