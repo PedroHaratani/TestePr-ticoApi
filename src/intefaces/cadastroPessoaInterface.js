@@ -1,5 +1,8 @@
 class cadastroPessoaInterface {
-    constructor(){
+    constructor() {
+        
+        
+    
         if(!this.cadastro){
             throw new Error("Precisa possuir o metodo cadastro");
         }

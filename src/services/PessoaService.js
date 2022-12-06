@@ -16,13 +16,14 @@ module.exports = {
             db.query(`SELECT * FROM pessoa p WHERE p.cpf = ?`,[cpf],(error,results)=>{
                 if(error){rejected(error);return;}
                 accepted(results);
+                return results;
             });
         });
     },
 
-    inserirPessoa: (Pessoa)=>{
+    inserirPessoa: (nome,cpf,email,telefone,sexo,dataNascimento)=>{
         return new Promise((accepted,rejected)=>{
-            db.query(`INSERT INTO pessoa (nome,cpf,email,telefone,sexo,dataNascimento) VALUES(?,?,?,?,?,STR_TO_DATE(?,'%d/%m/%Y %H:%i:%s'))`,[Pessoa.nome,Pessoa.cpf,Pessoa.email,Pessoa.telefone,Pessoa.sexo,Pessoa.dataNascimento],(error,results)=>{
+            db.query(`INSERT INTO pessoa (nome,cpf,email,telefone,sexo,dataNascimento) VALUES(?,?,?,?,?,STR_TO_DATE(?,'%d/%m/%Y %H:%i:%s'))`,[nome,cpf,email,telefone,sexo,dataNascimento],(error,results)=>{
                 if(error){rejected(error);return;}
                 accepted(results.insertId);
             });

@@ -1,80 +1,68 @@
 const cadastroPessoaInterface =require('../intefaces/cadastroPessoaInterface');
-const PessoaController = require ('../controllers/PessoaController');
-const {buscarUm} = require('../controllers/PessoaController');
+//const PessoaController = require ('../controllers/PessoaController');
+const PessoaService = require('../services/PessoaService');
 
 class Pessoa extends cadastroPessoaInterface {
+    
     constructor (nome,cpf,email,telefone,sexo,dataNascimento) {
         super();
-        
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
+        
     }
-    get cadastro(){
-        var pessoa = JSON.parse(PessoaController.inserirPessoa);
+    
+    get cadastro() {
 
-        try {
-            this.nome = pessoa.nome;
-            this.cpf = pessoa.cpf;
-            this.email = pessoa.email;
-            this.telefone = pessoa.telefone;
-            this.sexo = pessoa.sexo;
-            this.dataNascimento = pessoa.dataNascimento;
-        }catch (Exception)
-        {
-            throw new Exception;
-        }
+            return this.nome +"";            //PessoaService.inserirPessoa(this.nome,this.cpf,this.email,this.telefone,this.sexo,this.dataNascimento);
+            this.nome = nome;
+            this.cpf = cpf;
+            this.email = email;
+            this.telefone = telefone;
+            this.sexo = sexo;
+            this.dataNascimento = dataNascimento;
+        
+        
     }
     get update(){
-        var pessoa = JSON.parse(PessoaController.alterarPessoa);
-
-        try {
-            this.nome = pessoa.nome;
-            this.cpf = pessoa.cpf;
-            this.email = pessoa.email;
-            this.telefone = pessoa.telefone;
-            this.sexo = pessoa.sexo;
-            this.dataNascimento = pessoa.dataNascimento;
-        }catch (Exception)
-        {
-            throw new Exception;
-        }
+       //var pessoa = JSON.parse(PessoaController.deletarPessoa);
+       
+       return this.cpf +""//PessoaService.inserirPessoa(this.nome,this.cpf,this.email,this.telefone,this.sexo,this.dataNascimento);
+       this.nome = nome;
+       this.cpf = cpf;
+       this.email = email;
+       this.telefone = telefone;
+       this.sexo = sexo;
+       this.dataNascimento = dataNascimento;
+        
     }
     get delete(){
-        var pessoa = JSON.parse(PessoaController.deletarPessoa);
+       // var pessoa = JSON.parse(PessoaController.deletarPessoa);
         
-        try {
-            this.nome = pessoa.nome;
-            this.cpf = pessoa.cpf;
-            this.email = pessoa.email;
-            this.telefone = pessoa.telefone;
-            this.sexo = pessoa.sexo;
-            this.dataNascimento = pessoa.dataNascimento;
-        }catch (Exception)
-        {
-            throw new Exception;
-        }
+       return this.dataNascimento +""//PessoaService.inserirPessoa(this.nome,this.cpf,this.email,this.telefone,this.sexo,this.dataNascimento);
+       this.nome = nome;
+       this.cpf = cpf;
+       this.email = email;
+       this.telefone = telefone;
+       this.sexo = sexo;
+       this.dataNascimento = dataNascimento;
+        
     }
     get buscar(){
-
-        var pessoa =JSON.parse(buscarUm);
-        console.log(pessoa);
+        //var pessoa = JSON.parse(PessoaController.buscarUm);
         
-
-        try {
-            this.nome = pessoa.nome;
-            this.cpf = pessoa.cpf;
-            this.email = pessoa.email;
-            this.telefone = pessoa.telefone;
-            this.sexo = pessoa.sexo;
-            this.dataNascimento = pessoa.dataNascimento;
-        }catch (Exception)
-        {
-            throw console.log("Deu erro");
-        }
+        
+        return this.email +"" //PessoaService.inserirPessoa(this.nome,this.cpf,this.email,this.telefone,this.sexo,this.dataNascimento);
+            this.nome = nome;
+            this.cpf = cpf;
+            this.email = email;
+            this.telefone = telefone;
+            this.sexo = sexo;
+            this.dataNascimento = dataNascimento;
+        
     }
 
 }

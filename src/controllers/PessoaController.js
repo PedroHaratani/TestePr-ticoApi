@@ -1,5 +1,5 @@
 const PessoaService = require('../services/PessoaService');
-const Pessoa =require ('../classes/Pessoa');
+const PessoaModel = require ('../classes/Pessoa');
 
 formatar = (data)=>{
     let dataFormatada = new Date(Date.parse(data));
@@ -11,6 +11,7 @@ module.exports ={
         let json = {error:'',result:[]};
 
         let pessoas = await PessoaService.buscarTodos();
+        
 
         for(let i in pessoas){
             json.result.push({
@@ -23,6 +24,12 @@ module.exports ={
                 dataNascimento: formatar (pessoas[i].dataNascimento)
             });
         }
+
+        for(i in pessoas){
+            PessoaModel.cpf = pessoas[i].cpf
+        }
+        console.log(PessoaModel);
+        
         
         res.json(json);
     },
@@ -34,20 +41,26 @@ module.exports ={
         if(pessoa){
             json.result=pessoa;
         }
-        
         return res.json(json.result);
     },
 
     inserirPessoa: async(req, res) =>{
         let json = {error:'',result:{}};
-
-        var Pessoa = {nome:req.body.nome,cpf:req.body.cpf,email:req.body.email,telefone:req.body.telefone,sexo:req.body.sexo,dataNascimento:req.body.dataNascimento};
-
         
-        if(Pessoa){
-            let pessoa = await PessoaService.inserirPessoa(Pessoa);
-            json.result=pessoa;
-        }  
+        let teste;
+         Pessoa = {nome:req.body.nome,cpf:req.body.cpf,email:req.body.email,telefone:req.body.telefone,sexo:req.body.sexo,dataNascimento:req.body.dataNascimento};
+         PessoaModel.nome=req.body.nome;
+         PessoaModel.cpf=req.body.cpf;
+         PessoaModel.email=req.body.email;
+         PessoaModel.telefone=req.body.telefone;
+         PessoaModel.sexo=req.body.sexo;
+         PessoaModel.dataNascimento=req.body.dataNascimento;
+         //console.log(PessoaModel.nome);
+         teste = new PessoaModel(PessoaModel.nome,PessoaModel.cpf,PessoaModel.email,PessoaModel.telefone,PessoaModel.sexo,PessoaModel.dataNascimento);
+         PessoaService.inserirPessoa(PessoaModel.nome,PessoaModel.cpf,PessoaModel.email,PessoaModel.telefone,PessoaModel.sexo,PessoaModel.dataNascimento);
+         //PessoaModel.arguments;
+         //PessoaModel.cadastro;
+
         res.json(json);
     },
 
